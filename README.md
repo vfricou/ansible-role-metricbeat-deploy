@@ -1,31 +1,62 @@
+# RGM Metricbeat deploy ansible role
+## Job variables
+
+
+### Mandatory extra-vars
+
+
+
+
+
 Role Name
 =========
 
-A brief description of the role goes here.
+Ansible role to deploy metricbeat monitoring agent from RGM oneliner.
+
+It perform following tasks :
+- Install needed packages to perform metricbeat agent installation (lsb_release)
+- Deploy metricbeat agent with RGM oneliner script
+- Create new hosts into Lilac configuration
+- Perform export job to include hosts in nagios
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Some of this variables **absolutely need to be defined** to get fully working playbook :
+
+- d_rgm_ip
+- rgm_adm_username
+- rgm_adm_password
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| name                       | default value             | usage                                                |
+| -------------------------- | --------------------------| ---------------------------------------------------- |
+| ```d_rgm_ip```             | 192.168.0.254             | RGM IP or hostname to get install script and use API |
+| ```d_rgm_template```       | RGM_LINUX_ES              | RGM template applyed to new hosts                    |
+| ```d_rgm_exportjob_name``` | Incremental Nagios Export | RGM export job name used to import new hosts         |
+| ```rgm_adm_username```     |                           | RGM admin username to create new hosts               |
+| ```rgm_adm_password```     |                           | RGM admin password to create new hosts               |
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+No specific dependencies expected here.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+---
+- hosts: monitored
+  roles:
+    - role-metricbeat-deploy
+  vars:
+    d_rgm_ip: 192.168.0.10
+    rgm_username: admin
+    rgm_password: Chang€m€
+```
 
 License
 -------
@@ -35,4 +66,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Initial write by Vincent Fricou <vincent@fricouv.eu> (2019), release under the terms of BSD licences
