@@ -1,0 +1,8 @@
+---
+- name: debian | install needed packages
+  apt:
+    update_cache: yes
+    dpkg_options: force-confold
+    name: '{{ v_deb_needed_pkg }}'
+    state: present
+    install_recommends: no

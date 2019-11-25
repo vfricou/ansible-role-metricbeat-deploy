@@ -1,2 +1,4 @@
 ---
-# defaults file for role-metricbeat-deploy
+d_rgm_ip: 192.168.0.254
+d_rgm_template: 'RGM_LINUX_ES'
+d_rgm_exportjob_name: 'Incremental Nagios Export'

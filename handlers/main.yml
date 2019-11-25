@@ -1,2 +1,10 @@
 ---
-# handlers file for role-metricbeat-deploy
+- name: export configuration
+  uri:
+    url: 'https://{{ d_rgm_ip }}/rgmapi/exportConfiguration'
+    method: POST
+    body:
+      token: "{{ rgm_token.json.RGMAPI_TOKEN }}"
+      JobName: "{{ d_rgm_exportjob_name }}"
+    body_format: json
+    validate_certs: no

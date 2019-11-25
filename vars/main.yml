@@ -1,2 +1,6 @@
 ---
-# vars file for role-metricbeat-deploy
+v_deb_needed_pkg:
+  - lsb-release
+v_centos_needed_pkg:
+  - redhat-lsb-core
+v_mbd_dest: /tmp/install-metricbeat.bash

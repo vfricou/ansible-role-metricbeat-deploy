@@ -1,2 +1,26 @@
 ---
-# tasks file for role-metricbeat-deploy
+- name: check os compatibility
+  fail:
+      msg: 'Os {{ ansible_distribution }} not supported'
+  when: ansible_distribution != 'Debian' and ansible_distribution != 'CentOS'
+
+- name: import debian specific tasks
+  import_tasks: debian.yml
+  when: ansible_distribution == 'Debian'
+
+- name: import centos specific tasks
+  import_tasks: centos.yml
+  when: ansible_distribution == 'CentOS'
+
+- name: test is metricbeat already deployed
+  stat:
+    path: /etc/metricbeat
+  register: metricbeat_conf_dir
+
+- name: import metricbeat deployement and rgm config
+  import_tasks: deploy.yml
+  when: metricbeat_conf_dir.stat.exists != True
+
+- name: import create rgm host
+  import_tasks: create_rgm_host.yml
+  when: metricbeat_conf_dir.stat.exists != True
