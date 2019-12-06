@@ -35,4 +35,14 @@
     body_format: json
     validate_certs: no
   when: ansible_virtualization_type != 'lxc'
-  notify: export configuration
+
+- name: export configuration
+  uri:
+    url: 'https://{{ d_rgm_ip }}/rgmapi/exportConfiguration'
+    method: POST
+    body:
+      token: "{{ rgm_token.json.RGMAPI_TOKEN }}"
+      jobName: "{{ d_rgm_exportjob_name }}"
+    body_format: json
+    status_code: 200
+    validate_certs: no
