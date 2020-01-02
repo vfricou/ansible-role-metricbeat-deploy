@@ -18,7 +18,7 @@
 
 - name: windows | download rgm oneliner script
   win_get_url:
-    url: '{{ d_win_url_oneliner }}'
+    url: '{{ v_win_url_oneliner }}'
     dest: 'C:\temp\Add-RGMHost.ps1'
     validate_certs: no
   when: not service_info['exists']
