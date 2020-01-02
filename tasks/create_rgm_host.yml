@@ -36,7 +36,7 @@
     validate_certs: no
   when: ansible_virtualization_type != 'lxc'
 
-- name: export configuration
+- name: create_rgm_host | export configuration
   uri:
     url: 'https://{{ d_rgm_ip }}/rgmapi/exportConfiguration'
     method: POST
