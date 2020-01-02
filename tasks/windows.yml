@@ -1,0 +1,29 @@
+---
+- name: windows | get service status
+  win_service:
+    name: 'metricbeat'
+  register: service_info
+
+- name: windows | notify handler to restart service
+  debug:
+    msg: restart metricbeat service
+  notify: win restart metricbeat service
+  changed_when: true
+  when: service_info['exists'] and service_info['state'] != "running"
+
+- name: windows | ensure temp directory exist
+  win_file:
+    path: 'C:\temp'
+    state: directory
+
+- name: windows | download rgm oneliner script
+  win_get_url:
+    url: '{{ d_win_url_oneliner }}'
+    dest: 'C:\temp\Add-RGMHost.ps1'
+    validate_certs: no
+  when: not service_info['exists']
+
+- name: windows | perform metricbeat installation and importation
+  win_shell: 'C:\temp\Add-RGMHost.ps1 -Username "{{ rgm_adm_username }}" -Password "{{ rgm_adm_password }}" -RGMServer "{{ d_rgm_ip }}" -RGMTemplate "{{ d_rgm_win_template }}"'
+  when: not service_info['exists']
+  notify: win restart metricbeat service
