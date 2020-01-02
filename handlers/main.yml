@@ -1,1 +1,6 @@
 ---
+- name: win restart metricbeat service
+  win_service:
+    name: metricbeat
+    state: restarted
+    start_mode: auto
