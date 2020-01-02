@@ -1,15 +1,5 @@
-# RGM Metricbeat deploy ansible role
-## Job variables
-
-
-### Mandatory extra-vars
-
-
-
-
-
-Role Name
-=========
+RGM Metricbeat deploy ansible role
+==================================
 
 Ansible role to deploy metricbeat monitoring agent from RGM oneliner.
 
@@ -31,13 +21,15 @@ Some of this variables **absolutely need to be defined** to get fully working pl
 Role Variables
 --------------
 
-| name                       | default value             | usage                                                |
-| -------------------------- | --------------------------| ---------------------------------------------------- |
-| ```d_rgm_ip```             | 192.168.0.254             | RGM IP or hostname to get install script and use API |
-| ```d_rgm_template```       | RGM_LINUX_ES              | RGM template applyed to new hosts                    |
-| ```d_rgm_exportjob_name``` | Incremental Nagios Export | RGM export job name used to import new hosts         |
-| ```rgm_adm_username```     |                           | RGM admin username to create new hosts               |
-| ```rgm_adm_password```     |                           | RGM admin password to create new hosts               |
+| name                             | default value             | usage                                                |
+| -------------------------------- | --------------------------| ---------------------------------------------------- |
+| ```d_rgm_ip```                   | 192.168.0.254             | RGM IP or hostname to get install script and use API |
+| ```d_rgm_template```             | RGM_LINUX_ES              | RGM template applied to new hosts                    |
+| ```d_rgm_exportjob_name```       | Incremental Nagios Export | RGM export job name used to import new hosts         |
+| ```d_rgm_win_template```         | RGM_WINDOWS_ES            | RGM template applied to new windows hosts            |
+| ```rgm_adm_username```           |                           | RGM admin username to create new hosts               |
+| ```rgm_adm_password```           |                           | RGM admin password to create new hosts               |
+| ```remove_metricbeat_services``` | no                        | Launch only metricbeat service deletion              |
 
 Dependencies
 ------------
@@ -67,3 +59,7 @@ Author Information
 ------------------
 
 Initial write by Vincent Fricou <vincent@fricouv.eu> (2019), release under the terms of BSD licences
+
+### Contributions
+
+Oriane SAVIO - Windows deployment parts
