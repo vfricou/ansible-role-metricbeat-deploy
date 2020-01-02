@@ -1,24 +1,22 @@
-RGM Metricbeat deploy ansible role
-==================================
+# RGM Metricbeat deploy ansible role
 
 Ansible role to deploy metricbeat monitoring agent from RGM oneliner.
 
 It perform following tasks :
+
 - Install needed packages to perform metricbeat agent installation (lsb_release)
 - Deploy metricbeat agent with RGM oneliner script
 - Create new hosts into Lilac configuration
 - Perform export job to include hosts in nagios
 
-Requirements
-------------
+## Requirements
 
 Some of this variables **absolutely need to be defined** to get fully working playbook :
 
 - rgm_adm_username
 - rgm_adm_password
 
-Role Variables
---------------
+## Role Variables
 
 | name                             | default value             | usage                                                |
 | -------------------------------- | --------------------------| ---------------------------------------------------- |
@@ -30,13 +28,27 @@ Role Variables
 | ```rgm_adm_password```           |                           | RGM admin password to create new hosts               |
 | ```remove_metricbeat_services``` | no                        | Launch only metricbeat service deletion              |
 
-Dependencies
-------------
+## Recommendations
+
+To improve security usage of this role, we recommend to store all sensitives datas in ansible custom vault.  
+All variables such as :
+
+- `rgm_adm_username`
+- `rgm_adm_password`
+- `ansible_user` (for windows hosts)
+- `ansible_password` (for windows hosts)
+- `ansible_connection` (for windows hosts)
+- `ansible_winrm_transport` (for windows hosts)
+- `ansible_wirm_scheme` (for windows hosts)
+- `ansible_port` (for windows hosts)
+
+Note: You could store more other variables in vault such as `d_rgm_template` or `d_rgm_ip` to centralize variables filling.
+
+## Dependencies
 
 No specific dependencies expected here.
 
-Example Playbook
-----------------
+## Example Playbook
 
 ```yaml
 ---
@@ -49,13 +61,11 @@ Example Playbook
     rgm_adm_password: Chang€m€
 ```
 
-License
--------
+## License
 
 BSD
 
-Author Information
-------------------
+## Author Information
 
 Initial write by Vincent Fricou <vincent@fricouv.eu> (2019), release under the terms of BSD licences
 
