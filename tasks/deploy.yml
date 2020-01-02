@@ -2,7 +2,7 @@
 - name: deploy | download installation script
   get_url:
     dest: '{{ v_mbd_dest }}'
-    url: 'https://{{ d_rgm_ip }}/distrib/install/install-metricbeat.bash'
+    url: 'https://{{ rgm_ip }}/distrib/install/install-metricbeat.bash'
     validate_certs: no
     owner: root
     mode: 0700

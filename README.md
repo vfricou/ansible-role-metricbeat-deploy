@@ -20,7 +20,7 @@ Some of this variables **absolutely need to be defined** to get fully working pl
 
 | name                             | default value             | usage                                                |
 | -------------------------------- | --------------------------| ---------------------------------------------------- |
-| ```d_rgm_ip```                   | 192.168.0.254             | RGM IP or hostname to get install script and use API |
+| ```rgm_ip```                     |                           | RGM IP or hostname to get install script and use API |
 | ```d_rgm_template```             | RGM_LINUX_ES              | RGM template applied to new hosts                    |
 | ```d_rgm_exportjob_name```       | Incremental Nagios Export | RGM export job name used to import new hosts         |
 | ```d_rgm_win_template```         | RGM_WINDOWS_ES            | RGM template applied to new windows hosts            |
@@ -56,9 +56,9 @@ No specific dependencies expected here.
   roles:
     - role-metricbeat-deploy
   vars:
-    d_rgm_ip: 192.168.0.10
-    rgm_adm_username: admin
-    rgm_adm_password: Chang€m€
+    rgm_ip: <rgm_hostname>
+    rgm_adm_username: <rgm_admin_username>
+    rgm_adm_password: <rgm_admin_password>
 ```
 
 ## License

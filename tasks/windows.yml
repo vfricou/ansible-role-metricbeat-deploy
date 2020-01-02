@@ -24,6 +24,6 @@
   when: not service_info['exists']
 
 - name: windows | perform metricbeat installation and importation
-  win_shell: 'C:\temp\Add-RGMHost.ps1 -Username "{{ rgm_adm_username }}" -Password "{{ rgm_adm_password }}" -RGMServer "{{ d_rgm_ip }}" -RGMTemplate "{{ d_rgm_win_template }}"'
+  win_shell: 'C:\temp\Add-RGMHost.ps1 -Username "{{ rgm_adm_username }}" -Password "{{ rgm_adm_password }}" -RGMServer "{{ rgm_ip }}" -RGMTemplate "{{ d_rgm_win_template }}"'
   when: not service_info['exists']
   notify: win restart metricbeat service
