@@ -14,7 +14,6 @@ Requirements
 
 Some of this variables **absolutely need to be defined** to get fully working playbook :
 
-- d_rgm_ip
 - rgm_adm_username
 - rgm_adm_password
 
@@ -46,8 +45,8 @@ Example Playbook
     - role-metricbeat-deploy
   vars:
     d_rgm_ip: 192.168.0.10
-    rgm_username: admin
-    rgm_password: Chang€m€
+    rgm_adm_username: admin
+    rgm_adm_password: Chang€m€
 ```
 
 License
