@@ -4,3 +4,4 @@ v_deb_needed_pkg:
 v_centos_needed_pkg:
   - redhat-lsb-core
 v_mbd_dest: /tmp/install-metricbeat.bash
+v_win_url_oneliner: 'https://{{ rgm_ip }}/distrib/install/Add-RGMHost.ps1'
