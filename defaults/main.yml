@@ -1,2 +1,5 @@
 ---
-# defaults file for role-metricbeat-deploy
+d_rgm_template: 'RGM_LINUX_ES'
+d_rgm_win_template: 'RGM_WINDOWS_ES'
+d_rgm_exportjob_name: 'Incremental Nagios Export'
+remove_metricbeat_services: 'no'

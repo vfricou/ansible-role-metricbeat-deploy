@@ -1,0 +1,48 @@
+---
+- name: create_rgm_host | get rgm token
+  uri:
+    url: 'https://{{ rgm_ip }}/rgmapi/getAuthToken?username={{ rgm_adm_username }}&password={{ rgm_adm_password }}'
+    remote_src: yes
+    method: GET
+    status_code: 200
+    validate_certs: no
+  register: rgm_token
+
+- name: create_rgm_host | create rgm host
+  uri:
+    url: 'https://{{ rgm_ip }}/rgmapi/createHost'
+    method: POST
+    body:
+      token: "{{ rgm_token.json.RGMAPI_TOKEN }}"
+      hostName: "{{ ansible_hostname }}"
+      hostIp: "{{ ansible_default_ipv4['address'] }}"
+      templateHostName: "{{ d_rgm_template }}"
+      exportConfiguration: true
+    body_format: json
+    validate_certs: no
+  when: ansible_virtualization_type == 'lxc'
+
+- name: create_rgm_host | create rgm host
+  uri:
+    url: 'https://{{ rgm_ip }}/rgmapi/createHost'
+    method: POST
+    body:
+      token: "{{ rgm_token.json.RGMAPI_TOKEN }}"
+      hostName: "{{ ansible_fqdn }}"
+      hostIp: "{{ ansible_default_ipv4['address'] }}"
+      templateHostName: "{{ d_rgm_template }}"
+      exportConfiguration: true
+    body_format: json
+    validate_certs: no
+  when: ansible_virtualization_type != 'lxc'
+
+- name: create_rgm_host | export configuration
+  uri:
+    url: 'https://{{ rgm_ip }}/rgmapi/exportConfiguration'
+    method: POST
+    body:
+      token: "{{ rgm_token.json.RGMAPI_TOKEN }}"
+      jobName: "{{ d_rgm_exportjob_name }}"
+    body_format: json
+    status_code: 200
+    validate_certs: no

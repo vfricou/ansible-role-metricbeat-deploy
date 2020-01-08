@@ -1,0 +1,21 @@
+---
+- name: linux | import debian specific tasks
+  import_tasks: debian.yml
+  when: ansible_distribution == 'Debian'
+
+- name: linux | import centos specific tasks
+  import_tasks: centos.yml
+  when: ansible_distribution == 'CentOS'
+
+- name: linux | test is metricbeat already deployed
+  stat:
+    path: /etc/metricbeat
+  register: metricbeat_conf_dir
+
+- name: linux | import metricbeat deployement and rgm config
+  import_tasks: deploy.yml
+  when: metricbeat_conf_dir.stat.exists != True
+
+- name: linux | import create rgm host
+  import_tasks: create_rgm_host.yml
+  when: metricbeat_conf_dir.stat.exists != True

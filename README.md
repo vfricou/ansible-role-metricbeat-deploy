@@ -1,38 +1,74 @@
-Role Name
-=========
+# RGM Metricbeat deploy ansible role
 
-A brief description of the role goes here.
+Ansible role to deploy metricbeat monitoring agent from RGM oneliner.
 
-Requirements
-------------
+It perform following tasks :
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+- Install needed packages to perform metricbeat agent installation (lsb_release)
+- Deploy metricbeat agent with RGM oneliner script
+- Create new hosts into Lilac configuration
+- Perform export job to include hosts in nagios
 
-Role Variables
---------------
+## Requirements
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Some of this variables **absolutely need to be defined** to get fully working playbook :
 
-Dependencies
-------------
+- rgm_adm_username
+- rgm_adm_password
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+## Role Variables
 
-Example Playbook
-----------------
+| name                             | default value             | usage                                                |
+| -------------------------------- | --------------------------| ---------------------------------------------------- |
+| ```rgm_ip```                     |                           | RGM IP or hostname to get install script and use API |
+| ```d_rgm_template```             | RGM_LINUX_ES              | RGM template applied to new hosts                    |
+| ```d_rgm_exportjob_name```       | Incremental Nagios Export | RGM export job name used to import new hosts         |
+| ```d_rgm_win_template```         | RGM_WINDOWS_ES            | RGM template applied to new windows hosts            |
+| ```rgm_adm_username```           |                           | RGM admin username to create new hosts               |
+| ```rgm_adm_password```           |                           | RGM admin password to create new hosts               |
+| ```remove_metricbeat_services``` | no                        | Launch only metricbeat service deletion              |
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+## Recommendations
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+To improve security usage of this role, we recommend to store all sensitives datas in ansible custom vault.  
+All variables such as :
 
-License
--------
+- `rgm_adm_username`
+- `rgm_adm_password`
+- `ansible_user` (for windows hosts)
+- `ansible_password` (for windows hosts)
+- `ansible_connection` (for windows hosts)
+- `ansible_winrm_transport` (for windows hosts)
+- `ansible_wirm_scheme` (for windows hosts)
+- `ansible_port` (for windows hosts)
+
+Note: You could store more other variables in vault such as `d_rgm_template` or `d_rgm_ip` to centralize variables filling.
+
+## Dependencies
+
+No specific dependencies expected here.
+
+## Example Playbook
+
+```yaml
+---
+- hosts: monitored
+  roles:
+    - role-metricbeat-deploy
+  vars:
+    rgm_ip: <rgm_hostname>
+    rgm_adm_username: <rgm_admin_username>
+    rgm_adm_password: <rgm_admin_password>
+```
+
+## License
 
 BSD
 
-Author Information
-------------------
+## Author Information
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Initial write by Vincent Fricou <vincent@fricouv.eu> (2019), release under the terms of BSD licences
+
+### Contributions
+
+Oriane SAVIO - Windows deployment parts
