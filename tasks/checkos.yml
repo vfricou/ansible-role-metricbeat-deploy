@@ -7,4 +7,4 @@
 - name: checkos | check windows os compatibility
   fail:
     msg: 'Windows version {{ ansible_distribution }} not supported'
-  when: ansible_system == 'Win32NT' and ansible_distribution_major_version < 6
+  when: ansible_system == 'Win32NT' and ansible_distribution_major_version < '6'
