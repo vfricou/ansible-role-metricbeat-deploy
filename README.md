@@ -40,6 +40,12 @@ Some of this variables **absolutely need to be defined** to get fully working pl
 |                                  | socket_summary            |                                                          |
 |                                  | diskio                    |                                                          |
 
+## Role tags
+
+| Tag       | Usage                                                                        |
+| --------- | ---------------------------------------------------------------------------- |
+| configure | Relaunch metricbeat configuration steps (rewrite files) and restart services |
+
 ## Recommendations
 
 To improve security usage of this role, we recommend to store all sensitives datas in ansible custom vault.  
