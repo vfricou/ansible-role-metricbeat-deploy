@@ -18,15 +18,27 @@ Some of this variables **absolutely need to be defined** to get fully working pl
 
 ## Role Variables
 
-| name                             | default value             | usage                                                |
-| -------------------------------- | --------------------------| ---------------------------------------------------- |
-| ```rgm_ip```                     |                           | RGM IP or hostname to get install script and use API |
-| ```d_rgm_template```             | RGM_LINUX_ES              | RGM template applied to new hosts                    |
-| ```d_rgm_exportjob_name```       | Incremental Nagios Export | RGM export job name used to import new hosts         |
-| ```d_rgm_win_template```         | RGM_WINDOWS_ES            | RGM template applied to new windows hosts            |
-| ```rgm_adm_username```           |                           | RGM admin username to create new hosts               |
-| ```rgm_adm_password```           |                           | RGM admin password to create new hosts               |
-| ```remove_metricbeat_services``` | no                        | Launch only metricbeat service deletion              |
+| name                             | default value             | usage                                                    |
+| -------------------------------- | --------------------------| -------------------------------------------------------- |
+| ```rgm_ip```                     |                           | RGM IP or hostname to get install script and use API     |
+| ```d_rgm_template```             | RGM_LINUX_ES              | RGM template applied to new hosts                        |
+| ```d_rgm_exportjob_name```       | Incremental Nagios Export | RGM export job name used to import new hosts             |
+| ```d_rgm_win_template```         | RGM_WINDOWS_ES            | RGM template applied to new windows hosts                |
+| ```rgm_adm_username```           |                           | RGM admin username to create new hosts                   |
+| ```rgm_adm_password```           |                           | RGM admin password to create new hosts                   |
+| ```remove_metricbeat_services``` | no                        | Launch only metricbeat service deletion                  |
+| ```d_metric_sys_core_period```   | 2m                        | Metricbeat data collection interval for core sys modules |
+| ```d_metric_sys_fs_period```     | 2m                        | Metricbeat data collection interval for fs sys modules   |
+| ```d_metric_sys_uptime_period``` | 2m                        | Metricbeat data collection interval for uptime module    |
+| ```metric_sys_fs_raid_enabled``` |                           | If variable declared, activate metricbeat raid module    |
+| ```d_metric_sys_core_metrics```  | cpu                       | Defaults metrics collection enable in system module      |
+|                                  | load                      |                                                          |
+|                                  | memory                    |                                                          |
+|                                  | network                   |                                                          |
+|                                  | process                   |                                                          |
+|                                  | process_summary           |                                                          |
+|                                  | socket_summary            |                                                          |
+|                                  | diskio                    |                                                          |
 
 ## Recommendations
 

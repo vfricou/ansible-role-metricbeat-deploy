@@ -4,3 +4,8 @@
     name: metricbeat
     state: restarted
     start_mode: auto
+
+- name: restart metricbeat service
+  service:
+    name: metricbeat
+    state: restarted
