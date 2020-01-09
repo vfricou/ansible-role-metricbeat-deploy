@@ -5,7 +5,13 @@
   period: {{ d_metric_sys_core_period }}
   metricsets:
 {% for metrics in d_metric_sys_core_metrics %}
+{% if ansible_system == 'Win32NT' %}
+{% if metrics != 'load' %}
     - {{ metrics }}
+{% endif %}
+{% else %}
+    - {{ metrics }}
+{% endif %}
 {% endfor %}
   process.include_top_n:
     by_cpu: 5      # include top 5 processes by CPU
