@@ -3,4 +3,4 @@
   yum:
       update_cache: yes
       name: '{{ v_centos_needed_pkg }}'
-      state: present
+      state: latest

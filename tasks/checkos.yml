@@ -2,7 +2,9 @@
 - name: checkos | check linux os compatibility
   fail:
       msg: 'Linux distribution {{ ansible_distribution }} not supported'
-  when: ansible_system == 'Linux' and (ansible_distribution != 'Debian' and ansible_distribution != 'CentOS')
+  when: ansible_system == 'Linux' and
+        ((ansible_distribution != 'Debian' and ansible_distribution_major_version|int < 9) and
+        (ansible_distribution != 'CentOS' and ansible_distribution_major_version|int < 6))
 
 - name: checkos | check windows os compatibility
   fail:
