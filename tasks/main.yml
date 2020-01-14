@@ -1,5 +1,5 @@
 ---
-- name: import check os
+- name: import check os  
   import_tasks: checkos.yml
 
 - name: import linux tasks
