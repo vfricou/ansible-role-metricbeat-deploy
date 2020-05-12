@@ -14,27 +14,12 @@
     method: POST
     body:
       token: "{{ rgm_token.json.RGMAPI_TOKEN }}"
-      hostName: "{{ ansible_hostname }}"
+      hostName: "{{ ansible_nodename }}"
       hostIp: "{{ ansible_default_ipv4['address'] }}"
       templateHostName: "{{ d_rgm_template }}"
       exportConfiguration: true
     body_format: json
     validate_certs: no
-  when: ansible_virtualization_type == 'lxc'
-
-- name: create_rgm_host | create rgm host
-  uri:
-    url: 'https://{{ rgm_ip }}/rgmapi/createHost'
-    method: POST
-    body:
-      token: "{{ rgm_token.json.RGMAPI_TOKEN }}"
-      hostName: "{{ ansible_fqdn }}"
-      hostIp: "{{ ansible_default_ipv4['address'] }}"
-      templateHostName: "{{ d_rgm_template }}"
-      exportConfiguration: true
-    body_format: json
-    validate_certs: no
-  when: ansible_virtualization_type != 'lxc'
 
 - name: create_rgm_host | export configuration
   uri:
