@@ -33,7 +33,7 @@
 
 - name: linux | test is metricbeat default system module is active
   stat:
-    path: /etc/metricbeat/modules/system.yml
+    path: /etc/metricbeat/modules.d/system.yml
   register: metricbeat_system_mod
   tags:
     - configure
