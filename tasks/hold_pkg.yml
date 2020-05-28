@@ -1,0 +1,4 @@
+---
+- name: hold_pkg | debian hold package to prevent unneeded updates
+  shell: apt-mark hold metricbeat
+  when: ansible_distribution == 'Debian'

@@ -57,6 +57,9 @@
   tags:
     - configure
 
+- name: linux | import hold_pkg.yml
+  import_tasks: hold_pkg.yml
+
 - name: linux | import create rgm host
   import_tasks: create_rgm_host.yml
   when: not metricbeat_conf_dir.stat.exists
