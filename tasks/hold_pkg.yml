@@ -14,5 +14,6 @@
       path: /etc/yum.repos.d/elasticsearch.repo
       regexp: 'exclude\s+='
       line: 'exclude=metricbeat'
+    when: elk_repository.stat.exists
 
   when: ansible_distribution == 'CentOS'
