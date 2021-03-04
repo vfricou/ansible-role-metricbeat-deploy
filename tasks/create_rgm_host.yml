@@ -2,10 +2,10 @@
 - name: create_rgm_host | get rgm token
   uri:
     url: 'https://{{ rgm_ip }}/rgmapi/getAuthToken?username={{ rgm_adm_username }}&password={{ rgm_adm_password }}'
-    remote_src: yes
+    remote_src: true
     method: GET
     status_code: 200
-    validate_certs: no
+    validate_certs: false
   register: rgm_token
 
 - name: create_rgm_host | create rgm host
@@ -19,7 +19,7 @@
       templateHostName: "{{ d_rgm_template }}"
       exportConfiguration: true
     body_format: json
-    validate_certs: no
+    validate_certs: false
 
 - name: create_rgm_host | export configuration
   uri:
@@ -30,4 +30,4 @@
       jobName: "{{ d_rgm_exportjob_name }}"
     body_format: json
     status_code: 200
-    validate_certs: no
+    validate_certs: false

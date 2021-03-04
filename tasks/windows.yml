@@ -20,7 +20,7 @@
   win_get_url:
     url: '{{ v_win_url_oneliner }}'
     dest: 'C:\temp\Add-RGMHost.ps1'
-    validate_certs: no
+    validate_certs: false
   when: not service_info['exists']
 
 - name: windows | perform metricbeat installation and importation
@@ -78,4 +78,3 @@
 #   when: metricbeat_system_mod.stat.exists
 #   tags:
 #     - configure
-

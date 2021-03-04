@@ -7,8 +7,8 @@
 
 - name: delete | stop metricbeat service
   win_service:
-     name: 'metricbeat'
-     state: stopped
+    name: 'metricbeat'
+    state: stopped
   when: service_info['exists'] and service_info['state'] == "running" and ansible_system == 'Win32NT'
 
 - name: delete | remove metricbeat service

@@ -17,7 +17,7 @@ jobs:
 
     steps:
     # Important: This sets up your GITHUB_WORKSPACE environment variable
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Lint Ansible Playbook
       # replace "master" with any valid ref
       uses: ansible/ansible-lint-action@master
@@ -26,7 +26,7 @@ jobs:
         # Paths to ansible files (i.e., playbooks, tasks, handlers etc..)
         # or valid Ansible directories according to the Ansible role
         # directory structure.
-        targets: "tasks/main.yml"
+        targets: ""
         # [optional]
         # Arguments to be passed to the ansible-lint
 
@@ -49,4 +49,4 @@ jobs:
         #                         path to directories or files to skip. This option is
         #                         repeatable.
         #   -c C                  Specify configuration file to use. Defaults to ".ansible-lint"
-        args: ""
+        args: "-x E106"
