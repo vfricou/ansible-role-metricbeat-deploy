@@ -26,6 +26,8 @@ Some of this variables **absolutely need to be defined** to get fully working pl
 | ```d_rgm_win_template```         | RGM_WINDOWS_ES            | RGM template applied to new windows hosts                |
 | ```rgm_adm_username```           |                           | RGM admin username to create new hosts                   |
 | ```rgm_adm_password```           |                           | RGM admin password to create new hosts                   |
+| ```no_export_config```           | no                        | Windows only. do not export rgm configuration. usefull for larges volumes |
+| ```script_verbose```             | no                        | Windows only. launch script in verbose mode              |
 | ```remove_metricbeat_services``` | no                        | Launch only metricbeat service deletion                  |
 | ```d_metric_sys_core_period```   | 2m                        | Metricbeat data collection interval for core sys modules |
 | ```d_metric_sys_fs_period```     | 2m                        | Metricbeat data collection interval for fs sys modules   |
